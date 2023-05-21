@@ -1,10 +1,9 @@
 import React from "react";
+import Header from "../components/Header.tsx";
 
 export const Home: React.FC = () => {
+
     return (
-        <div>
-            <h1>Todo App</h1>
-            {/* Add your todo app components and functionality here */}
-        </div>
+        <Header title="Welcome to my ToDo App" />
     );
 };
