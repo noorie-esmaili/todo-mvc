@@ -6,7 +6,10 @@ interface HeaderProps {
 
 const LoginButton: React.FC<HeaderProps> = ({ title }) => {
     return (
-        title && <h1>{title}</h1>
+        <>
+            <button>All as completed</button>
+            {title && <h1>{title}</h1>}
+        </>
     )
 }
 
