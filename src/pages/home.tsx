@@ -17,9 +17,17 @@ export const Home: React.FC = () => {
         return tasks.length
     };
 
+    const handleCheckAll = () => {
+        const updatedTodos = todos.map((todo) => ({
+            ...todo,
+            completed: true,
+        }));        
+        setTodos(updatedTodos);
+    };
+
     return (
         <>
-            <Header title="Welcome to my ToDo App" />
+            <Header title="Welcome to my ToDo App" todos={todos} onCheckAll={handleCheckAll} />
             <TodoInput onSave={handleSave} />
             {todos && <TodoList todos={todos} />}
             {todos && <Footer numOfleftItems={uncompletedItems(todos)} />}

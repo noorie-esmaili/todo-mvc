@@ -10,7 +10,7 @@ const TodoList: React.FC<TodoListProps> = ({ todos }) => {
 
     return (
         <>
-            {todos && (todos.map((todo, i) => <TodoItem key={i} title={todo.title} />))}
+            {todos && (todos.map((todo, i) => <TodoItem key={i} title={todo.title} completed={todo.completed} />))}
         </>
     );
 };
