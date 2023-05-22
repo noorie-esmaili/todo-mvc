@@ -1,13 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header.tsx";
 import TodoInput from "../components/TodoInput.tsx";
 import TodoList from "../components/TodoList.tsx";
 import Task from "../model/Task.ts";
 import Footer from "../components/Footer.tsx";
 
+const STORAGE_KEY = "todos-react";
+
 const Home: React.FC = () => {
   const [todos, setTodos] = useState<Task[]>([]);
   const [filteredTodos, setFilteredTodos] = useState<Task[]>([]);
+
+  useEffect(() => {
+    const storedTodos = localStorage.getItem(STORAGE_KEY);
+    if (storedTodos) {
+      setTodos(JSON.parse(storedTodos));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+  }, [todos]);
 
   const handleSave = (value: Task) => {
     setTodos((prevTodos) => [...prevTodos, value]);
