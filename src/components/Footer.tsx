@@ -5,6 +5,7 @@ interface FooterProps {
   onFilterActive: () => void;
   onFilterAll: () => void;
   onFilterCompleted: () => void;
+  onClearCompleted: () => void;
 }
 
 const Footer: React.FC<FooterProps> = ({
@@ -12,6 +13,7 @@ const Footer: React.FC<FooterProps> = ({
   onFilterActive,
   onFilterAll,
   onFilterCompleted,
+  onClearCompleted,
 }) => {
   return (
     <>
@@ -19,7 +21,7 @@ const Footer: React.FC<FooterProps> = ({
       <button onClick={onFilterAll}>All</button>
       <button onClick={onFilterActive}>Active</button>
       <button onClick={onFilterCompleted}>Completed</button>
-      <button>Clear Completed</button>
+      <button onClick={onClearCompleted}>Clear Completed</button>
     </>
   );
 };
