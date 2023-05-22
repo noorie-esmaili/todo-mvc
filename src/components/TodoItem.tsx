@@ -42,6 +42,9 @@ const TodoItem: React.FC<TodoItemProps> = ({
   };
 
   const handleTitleBlur = () => {
+    if (editedTitle.trim() === "") {
+      onRemove(id);
+    }
     setEditing(false);
   };
 
@@ -69,40 +72,38 @@ const TodoItem: React.FC<TodoItemProps> = ({
 
   return (
     <>
-      {editedTitle && (
-        <div
-          className={`todo-item ${completed ? "completed" : "active"}`}
-          onDoubleClick={handleDoubleClick}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
+      <div
+        className={`todo-item ${completed ? "completed" : "active"}`}
+        onDoubleClick={handleDoubleClick}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <input
+          type="checkbox"
+          checked={checked}
+          onChange={handleCheckboxChange}
+        />
+        {editing ? (
           <input
-            type="checkbox"
-            checked={checked}
-            onChange={handleCheckboxChange}
+            type="text"
+            value={editedTitle}
+            onChange={handleTitleChange}
+            onBlur={handleTitleBlur}
+            onKeyDown={handleKeyDown}
+            autoFocus
+            ref={inputRef}
           />
-          {editing ? (
-            <input
-              type="text"
-              value={editedTitle}
-              onChange={handleTitleChange}
-              onBlur={handleTitleBlur}
-              onKeyDown={handleKeyDown}
-              autoFocus
-              ref={inputRef}
-            />
-          ) : (
-            <>
-              <label>{editedTitle}</label>
-              {showRemoveButton && (
-                <button className="destroy" onClick={handleRemoveClick}>
-                  X
-                </button>
-              )}
-            </>
-          )}
-        </div>
-      )}
+        ) : (
+          <>
+            <label>{editedTitle}</label>
+            {showRemoveButton && (
+              <button className="destroy" onClick={handleRemoveClick}>
+                X
+              </button>
+            )}
+          </>
+        )}
+      </div>
     </>
   );
 };
