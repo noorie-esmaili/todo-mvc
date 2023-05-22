@@ -32,7 +32,16 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.completed {
+  text-decoration: line-through;
+}
+
+.active {
+  text-decoration: none;
 }

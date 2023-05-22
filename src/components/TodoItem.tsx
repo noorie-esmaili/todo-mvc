@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import '../styles.scss'
 
 interface TodoItemProps {
   id: number;
@@ -32,7 +33,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
         checked={checked}
         onChange={handleCheckboxChange}
       />
-      <label style={{ textDecoration: checked ? "line-through" : "none" }}>
+      <label className={ completed ? "completed" : "active" }>
         {title}
       </label>
     </>
