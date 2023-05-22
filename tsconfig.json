@@ -10,7 +10,9 @@
             "dom"
         ],
         "moduleResolution": "node",
-        "noEmit": true,
-        "allowImportingTsExtensions": true
-    }
+        "noEmit": true
+    },
+    "include": [
+        "src"
+    ]
 }

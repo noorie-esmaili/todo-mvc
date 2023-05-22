@@ -1,6 +1,6 @@
 import React from "react";
-import Task from "../model/Task.ts";
-import TodoItem from "./TodoItem.tsx";
+import Task from "../model/Task";
+import TodoItem from "./TodoItem";
 
 interface TodoListProps {
     todos: Task[];

@@ -1,4 +1,4 @@
-import Task from "../model/Task.ts";
+import Task from "../model/Task";
 
 export function addTodoItem(title: string): Task {
     const newTodo: Task = {

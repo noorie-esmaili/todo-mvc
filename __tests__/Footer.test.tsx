@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Footer from '../src/components/Footer';
+jest.mock('../css/footer.scss', () => ({}));
 
 test('renders the footer correctly', () => {
     const numOfLeftItems = 3;

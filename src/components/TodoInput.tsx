@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { addTodoItem } from "../features/todoController.tsx";
-import Task from "../model/Task.ts";
-import "../css/todoinput.scss"
+import { addTodoItem } from "../features/todoController";
+import Task from "../model/Task";
 
 interface TodoInputProps {
     onSave: (value: Task) => void;

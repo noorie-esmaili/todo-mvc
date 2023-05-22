@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import "../css/todoitem.scss";
 
 interface TodoItemProps {
   id: number;

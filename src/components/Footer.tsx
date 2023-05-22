@@ -1,6 +1,5 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "../css/footer.scss"
 
 interface FooterProps {
   numOfLeftItems: number;

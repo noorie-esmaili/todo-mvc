@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import Header from "../components/Header.tsx";
-import TodoInput from "../components/TodoInput.tsx";
-import TodoList from "../components/TodoList.tsx";
-import Task from "../model/Task.ts";
-import Footer from "../components/Footer.tsx";
-import "../App.scss"
+import Header from "../components/Header";
+import TodoInput from "../components/TodoInput";
+import TodoList from "../components/TodoList";
+import Task from "../model/Task";
+import Footer from "../components/Footer";
+import "../css/footer.scss"
+import "../css/header.scss";
+import "../css/todoinput.scss"
+import "../css/todoitem.scss";
+
 
 const STORAGE_KEY = "todos-react";
 

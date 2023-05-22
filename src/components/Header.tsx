@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../css/header.scss";
 import { BiChevronDown } from "react-icons/bi";
 
 interface HeaderProps {
