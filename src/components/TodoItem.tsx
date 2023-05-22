@@ -69,34 +69,37 @@ const TodoItem: React.FC<TodoItemProps> = ({
 
   return (
     <>
-      {editedTitle && <input
-        type="checkbox"
-        checked={checked}
-        onChange={handleCheckboxChange}
-      />
-      }
-      {editing ? (
-        <input
-          type="text"
-          value={editedTitle}
-          onChange={handleTitleChange}
-          onBlur={handleTitleBlur}
-          onKeyDown={handleKeyDown}
-          autoFocus
-          ref={inputRef}
-        />
-      ) : (
+      {editedTitle && (
         <div
-          className={completed ? "completed" : "active"}
+          className={`todo-item ${completed ? "completed" : "active"}`}
           onDoubleClick={handleDoubleClick}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <label>{editedTitle}</label>
-          {showRemoveButton && (
-            <button className="destroy" onClick={handleRemoveClick}>
-              Remove
-            </button>
+          <input
+            type="checkbox"
+            checked={checked}
+            onChange={handleCheckboxChange}
+          />
+          {editing ? (
+            <input
+              type="text"
+              value={editedTitle}
+              onChange={handleTitleChange}
+              onBlur={handleTitleBlur}
+              onKeyDown={handleKeyDown}
+              autoFocus
+              ref={inputRef}
+            />
+          ) : (
+            <>
+              <label>{editedTitle}</label>
+              {showRemoveButton && (
+                <button className="destroy" onClick={handleRemoveClick}>
+                  X
+                </button>
+              )}
+            </>
           )}
         </div>
       )}
