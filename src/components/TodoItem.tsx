@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../css/todoitem.scss";
 
 interface TodoItemProps {
@@ -20,6 +20,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
   const [editing, setEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(title);
   const [showRemoveButton, setShowRemoveButton] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setChecked(completed);
@@ -42,14 +43,15 @@ const TodoItem: React.FC<TodoItemProps> = ({
 
   const handleTitleBlur = () => {
     setEditing(false);
-    // Perform any necessary save or update logic here
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       event.preventDefault();
       setEditing(false);
-      // Perform any necessary save or update logic here
+    } else if (event.key === "Escape") {
+      setEditing(false);
+      setEditedTitle(title);
     }
   };
 
@@ -67,11 +69,12 @@ const TodoItem: React.FC<TodoItemProps> = ({
 
   return (
     <>
-      <input
+      {editedTitle && <input
         type="checkbox"
         checked={checked}
         onChange={handleCheckboxChange}
       />
+      }
       {editing ? (
         <input
           type="text"
@@ -80,6 +83,8 @@ const TodoItem: React.FC<TodoItemProps> = ({
           onBlur={handleTitleBlur}
           onKeyDown={handleKeyDown}
           autoFocus
+          ref={inputRef}
+          required
         />
       ) : (
         <div
