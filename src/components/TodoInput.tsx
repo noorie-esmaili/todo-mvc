@@ -1,5 +1,3 @@
-
-// TodoInput.tsx
 import React, { useState } from "react";
 import { addTodoItem } from "../features/todoController.tsx";
 import Task from "../model/Task.ts";
@@ -16,7 +14,7 @@ const TodoInput: React.FC<TodoInputProps> = ({ onSave }) => {
     };
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === "Enter") {
+        if (event.key === "Enter" && inputValue.trim() !== "") {
             const newTodo = addTodoItem(inputValue);
             onSave(newTodo);
             setInputValue("");
@@ -35,9 +33,3 @@ const TodoInput: React.FC<TodoInputProps> = ({ onSave }) => {
 };
 
 export default TodoInput;
-
-
-
-
-
-

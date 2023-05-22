@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from "react";
 
 interface TodoItemProps {
+  id: number;
   title: string;
   completed: boolean;
+  onCheckboxChange: (id: number, completed: boolean) => void;
 }
 
-const TodoItem: React.FC<TodoItemProps> = ({ title, completed }) => {
+const TodoItem: React.FC<TodoItemProps> = ({
+  id,
+  title,
+  completed,
+  onCheckboxChange,
+}) => {
   const [checked, setChecked] = useState(completed);
 
   useEffect(() => {
@@ -13,12 +20,13 @@ const TodoItem: React.FC<TodoItemProps> = ({ title, completed }) => {
   }, [completed]);
 
   const handleCheckboxChange = () => {
-    setChecked(!checked);
+    const updatedChecked = !checked;
+    setChecked(updatedChecked);
+    onCheckboxChange(id, updatedChecked);
   };
 
   return (
     <>
-      {console.log(checked)}
       <input
         type="checkbox"
         checked={checked}

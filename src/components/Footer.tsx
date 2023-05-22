@@ -1,25 +1,18 @@
 import React from "react";
 
 interface FooterProps {
-    numOfleftItems: number
+  numOfLeftItems: number;
 }
 
-const TodoList: React.FC<FooterProps> = ({ numOfleftItems }) => {
-
-    return (
-        <>
-            <p>{numOfleftItems} items left</p>
-            <button>Active</button>
-            <button>Completed</button>
-            <button>Clear Completed</button>
-        </>
-    );
+const Footer: React.FC<FooterProps> = ({ numOfLeftItems }) => {
+  return (
+    <div>
+      <p>{numOfLeftItems} items left</p>
+      <button>Active</button>
+      <button>Completed</button>
+      <button>Clear Completed</button>
+    </div>
+  );
 };
 
-export default TodoList;
-
-
-
-
-
-
+export default Footer;

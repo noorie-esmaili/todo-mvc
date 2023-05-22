@@ -1,24 +1,20 @@
-import React, { useState } from "react";
-import Task from "../model/Task";
+import React from "react";
 
 interface HeaderProps {
   title: string;
-  todos: Task[];
   onCheckAll: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ title, onCheckAll }) => {
   const handleCheckAll = () => {
-    console.log("Hi");
-    
     onCheckAll();
   };
 
   return (
-    <>
+    <div>
       <button onClick={handleCheckAll}>All as completed</button>
       {title && <h1>{title}</h1>}
-    </>
+    </div>
   );
 };
 

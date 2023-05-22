@@ -5,32 +5,51 @@ import TodoList from "../components/TodoList.tsx";
 import Task from "../model/Task.ts";
 import Footer from "../components/Footer.tsx";
 
-export const Home: React.FC = () => {
+const Home: React.FC = () => {
     const [todos, setTodos] = useState<Task[]>([]);
-
+  
     const handleSave = (value: Task) => {
-        setTodos((prevTodos) => [...prevTodos, value]);
+      setTodos((prevTodos) => [...prevTodos, value]);
     };
-
+  
     const uncompletedItems = (tasks: Task[]) => {
-        tasks.filter(task => task.completed === false)
-        return tasks.length
+      return tasks.filter((task) => !task.completed).length;
     };
-
+  
     const handleCheckAll = () => {
-        const updatedTodos = todos.map((todo) => ({
-            ...todo,
-            completed: true,
-        }));        
-        setTodos(updatedTodos);
+      const areAllCompleted = todos.every((todo) => todo.completed);
+  
+      const updatedTodos = todos.map((todo) => ({
+        ...todo,
+        completed: !areAllCompleted,
+      }));
+  
+      setTodos(updatedTodos);
     };
 
+    const handleCheckboxChange = (id: number, completed: boolean) => {
+        const updatedTodos = todos.map((todo) => {
+          if (todo.id === id) {
+            return {
+              ...todo,
+              completed: completed,
+            };
+          }
+          return todo;
+        });
+    
+        setTodos(updatedTodos);
+      };
+  
     return (
-        <>
-            <Header title="Welcome to my ToDo App" todos={todos} onCheckAll={handleCheckAll} />
-            <TodoInput onSave={handleSave} />
-            {todos && <TodoList todos={todos} />}
-            {todos && <Footer numOfleftItems={uncompletedItems(todos)} />}
-        </>
+      <>
+        <Header title="Welcome to my ToDo App" onCheckAll={handleCheckAll} />
+        <TodoInput onSave={handleSave} />
+        {todos.length > 0 && <TodoList todos={todos} onCheckboxChange={handleCheckboxChange} />}
+        <Footer numOfLeftItems={uncompletedItems(todos)} />
+      </>
     );
-};
+  };
+  
+
+export default Home;
