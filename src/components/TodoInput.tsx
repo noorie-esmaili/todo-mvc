@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { addTodoItem } from "../features/todoController.tsx";
 import Task from "../model/Task.ts";
+import "../css/todoinput.scss"
 
 interface TodoInputProps {
     onSave: (value: Task) => void;
@@ -29,6 +30,7 @@ const TodoInput: React.FC<TodoInputProps> = ({ onSave }) => {
             type="text"
             placeholder="What needs to be done?"
             value={inputValue}
+            className="todo-input"
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
             autoFocus
