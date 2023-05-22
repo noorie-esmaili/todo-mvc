@@ -50,6 +50,10 @@ const Home: React.FC = () => {
     setFilteredTodos(activeTodos);
   };
 
+  const handleFilterAll = () => {
+    setFilteredTodos(todos);
+  };
+
   return (
     <>
       <Header title="Welcome to my ToDo App" onCheckAll={handleCheckAll} />
@@ -57,9 +61,14 @@ const Home: React.FC = () => {
       {filteredTodos.length > 0 && (
         <TodoList todos={filteredTodos} onCheckboxChange={handleCheckboxChange} />
       )}
-      <Footer numOfLeftItems={uncompletedItems(todos)} onFilterActive={handleFilterActive} />
+      <Footer
+        numOfLeftItems={uncompletedItems(todos)}
+        onFilterActive={handleFilterActive}
+        onFilterAll={handleFilterAll}
+      />
     </>
   );
 };
+
 
 export default Home;

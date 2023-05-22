@@ -3,13 +3,18 @@ import React from "react";
 interface FooterProps {
   numOfLeftItems: number;
   onFilterActive: () => void;
+  onFilterAll: () => void;
 }
 
-const Footer: React.FC<FooterProps> = ({ numOfLeftItems, onFilterActive }) => {
+const Footer: React.FC<FooterProps> = ({
+  numOfLeftItems,
+  onFilterActive,
+  onFilterAll,
+}) => {
   return (
     <>
       <p>{numOfLeftItems} items left</p>
-      <button>All</button>
+      <button onClick={onFilterAll}>All</button>
       <button onClick={onFilterActive}>Active</button>
       <button>Completed</button>
       <button>Clear Completed</button>
