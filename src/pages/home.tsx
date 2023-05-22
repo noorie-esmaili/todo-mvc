@@ -15,6 +15,7 @@ const Home: React.FC = () => {
     const storedTodos = localStorage.getItem(STORAGE_KEY);
     if (storedTodos) {
       setTodos(JSON.parse(storedTodos));
+      setFilteredTodos(JSON.parse(storedTodos));
     }
   }, []);
 
@@ -23,8 +24,9 @@ const Home: React.FC = () => {
   }, [todos]);
 
   const handleSave = (value: Task) => {
-    setTodos((prevTodos) => [...prevTodos, value]);
-    setFilteredTodos((prevTodos) => [...prevTodos, value]);
+    const newTodo = { ...value, id: todos.length + 1 };
+    setTodos((prevTodos) => [newTodo, ...prevTodos]);
+    setFilteredTodos((prevTodos) => [newTodo, ...prevTodos]);
   };
 
   const uncompletedItems = (tasks: Task[]) => {
