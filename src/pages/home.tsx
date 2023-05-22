@@ -16,8 +16,9 @@ const Home: React.FC = () => {
   useEffect(() => {
     const storedTodos = localStorage.getItem(STORAGE_KEY);
     if (storedTodos) {
-      setTodos(JSON.parse(storedTodos));
-      setFilteredTodos(JSON.parse(storedTodos));
+      const parsedTodos = JSON.parse(storedTodos);
+      setTodos(parsedTodos);
+      setFilteredTodos(parsedTodos);
     }
   }, []);
 
@@ -30,16 +31,25 @@ const Home: React.FC = () => {
   useEffect(() => {
     const pathname = location.pathname;
     if (pathname === "/active") {
-      handleFilterActive()
+      handleFilterActive();
     } else if (pathname === "/completed") {
-      handleFilterCompleted()
+      handleFilterCompleted();
     } else {
-      handleFilterAll()
+      handleFilterAll();
     }
-  }, [location]);
+  }, [location, todos]);
 
   const handleSave = (value: Task) => {
-    const newTodo = { ...value, id: todos[todos.length - 1].id + 1 };
+    const newTodo = {
+      ...value,
+      id: Math.floor(Math.random() * 100000),
+    };
+
+    const isDuplicateId = todos.some((todo) => todo.id === newTodo.id);
+    if (isDuplicateId) {
+      return;
+    }
+
     setTodos((prevTodos) => [newTodo, ...prevTodos]);
     setFilteredTodos((prevTodos) => [newTodo, ...prevTodos]);
   };

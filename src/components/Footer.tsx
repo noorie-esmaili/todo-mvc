@@ -1,5 +1,6 @@
 import React from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import "../css/footer.scss"
 
 interface FooterProps {
   numOfLeftItems: number;
@@ -25,10 +26,8 @@ const Footer: React.FC<FooterProps> = ({
     onClearCompleted();
   };
 
-  const location = useLocation()
-
   return (
-    <footer>
+    <footer className="footer">
       <span>{itemText}</span>
       <ul>
         <li>
