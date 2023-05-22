@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import Header from "../components/Header.tsx";
 import TodoInput from "../components/TodoInput.tsx";
 import TodoList from "../components/TodoList.tsx";
@@ -22,6 +23,19 @@ const Home: React.FC = () => {
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
   }, [todos]);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    const pathname = location.pathname;
+    if (pathname === "/active") {
+      handleFilterActive()
+    } else if (pathname === "/completed") {
+      handleFilterCompleted()
+    } else {
+      handleFilterAll()
+    }
+  }, [location]);
 
   const handleSave = (value: Task) => {
     const newTodo = { ...value, id: todos.length + 1 };
@@ -88,7 +102,7 @@ const Home: React.FC = () => {
     <>
       <Header title="Welcome to my ToDo App" onCheckAll={handleCheckAll} />
       <TodoInput onSave={handleSave} />
-      {filteredTodos.length > 0 && (
+      {todos.length > 0 && (
         <>
           <TodoList
             todos={filteredTodos}
