@@ -14,10 +14,13 @@ const TodoInput: React.FC<TodoInputProps> = ({ onSave }) => {
     };
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === "Enter" && inputValue.trim() !== "") {
-            const newTodo = addTodoItem(inputValue);
-            onSave(newTodo);
-            setInputValue("");
+        if (event.key === "Enter") {
+            const trimmedValue = inputValue.trim();
+            if (trimmedValue !== "") {
+                const newTodo = addTodoItem(trimmedValue);
+                onSave(newTodo);
+                setInputValue("");
+            }
         }
     };
 
@@ -28,6 +31,7 @@ const TodoInput: React.FC<TodoInputProps> = ({ onSave }) => {
             value={inputValue}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
+            autoFocus
         />
     );
 };
