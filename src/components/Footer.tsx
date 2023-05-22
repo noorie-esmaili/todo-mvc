@@ -15,14 +15,25 @@ const Footer: React.FC<FooterProps> = ({
   onFilterCompleted,
   onClearCompleted,
 }) => {
+  const itemWord = numOfLeftItems === 1 ? "item" : "items";
+  const itemText = `${numOfLeftItems} ${itemWord} left`;
+
   return (
-    <>
-      <p>{numOfLeftItems} items left</p>
-      <button onClick={onFilterAll}>All</button>
-      <button onClick={onFilterActive}>Active</button>
-      <button onClick={onFilterCompleted}>Completed</button>
+    <footer>
+      <span>{itemText}</span>
+      <ul>
+        <li>
+          <button onClick={onFilterAll}>All</button>
+        </li>
+        <li>
+          <button onClick={onFilterActive}>Active</button>
+        </li>
+        <li>
+          <button onClick={onFilterCompleted}>Completed</button>
+        </li>
+      </ul>
       <button onClick={onClearCompleted}>Clear Completed</button>
-    </>
+    </footer>
   );
 };
 
