@@ -5,11 +5,20 @@ import TodoItem from "./TodoItem.tsx";
 interface TodoListProps {
     todos: Task[];
     onCheckboxChange: (id: number, completed: boolean) => void;
+    onRemove: (id: number) => void; // Added onRemove prop
 }
 
-const TodoList: React.FC<TodoListProps> = ({ todos, onCheckboxChange }) => {
+const TodoList: React.FC<TodoListProps> = ({
+    todos,
+    onCheckboxChange,
+    onRemove,
+}) => {
     const handleCheckboxChange = (id: number, completed: boolean) => {
         onCheckboxChange(id, completed);
+    };
+
+    const handleRemove = (id: number) => {
+        onRemove(id);
     };
 
     return (
@@ -21,6 +30,7 @@ const TodoList: React.FC<TodoListProps> = ({ todos, onCheckboxChange }) => {
                     title={todo.title}
                     completed={todo.completed}
                     onCheckboxChange={handleCheckboxChange}
+                    onRemove={handleRemove} // Passed onRemove prop to TodoItem
                 />
             ))}
         </>

@@ -62,13 +62,23 @@ const Home: React.FC = () => {
     setFilteredTodos(uncompletedTodos);
   };
 
+  const handleRemove = (id: number) => {
+    const updatedTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(updatedTodos);
+    setFilteredTodos(updatedTodos);
+  };
+
   return (
     <>
       <Header title="Welcome to my ToDo App" onCheckAll={handleCheckAll} />
       <TodoInput onSave={handleSave} />
       {filteredTodos.length > 0 && (
         <>
-          <TodoList todos={filteredTodos} onCheckboxChange={handleCheckboxChange} />
+          <TodoList
+            todos={filteredTodos}
+            onCheckboxChange={handleCheckboxChange}
+            onRemove={handleRemove}
+          />
           <Footer
             numOfLeftItems={uncompletedItems(todos)}
             onFilterActive={handleFilterActive}
@@ -81,7 +91,5 @@ const Home: React.FC = () => {
     </>
   );
 };
-
-
 
 export default Home;
