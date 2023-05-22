@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink, useLocation } from "react-router-dom";
 
 interface FooterProps {
   numOfLeftItems: number;
@@ -24,18 +25,26 @@ const Footer: React.FC<FooterProps> = ({
     onClearCompleted();
   };
 
+  const location = useLocation()
+
   return (
     <footer>
       <span>{itemText}</span>
       <ul>
         <li>
-          <button onClick={onFilterAll}>All</button>
+          <NavLink to="/" onClick={onFilterAll}>
+            All
+          </NavLink>
         </li>
         <li>
-          <button onClick={onFilterActive}>Active</button>
+          <NavLink to="/active" onClick={onFilterActive}>
+            Active
+          </NavLink>
         </li>
         <li>
-          <button onClick={onFilterCompleted}>Completed</button>
+          <NavLink to="/completed" onClick={onFilterCompleted}>
+            Completed
+          </NavLink>
         </li>
       </ul>
       {hasCompletedTodos && (
@@ -43,6 +52,7 @@ const Footer: React.FC<FooterProps> = ({
       )}
     </footer>
   );
+
 };
 
 export default Footer;
