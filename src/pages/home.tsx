@@ -54,6 +54,11 @@ const Home: React.FC = () => {
     setFilteredTodos(todos);
   };
 
+  const handleFilterCompleted = () => {
+    const completedTodos = todos.filter((todo) => todo.completed);
+    setFilteredTodos(completedTodos);
+  };
+
   return (
     <>
       <Header title="Welcome to my ToDo App" onCheckAll={handleCheckAll} />
@@ -65,10 +70,12 @@ const Home: React.FC = () => {
         numOfLeftItems={uncompletedItems(todos)}
         onFilterActive={handleFilterActive}
         onFilterAll={handleFilterAll}
+        onFilterCompleted={handleFilterCompleted}
       />
     </>
   );
 };
+
 
 
 export default Home;
