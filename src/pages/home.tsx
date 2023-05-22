@@ -5,6 +5,7 @@ import TodoInput from "../components/TodoInput.tsx";
 import TodoList from "../components/TodoList.tsx";
 import Task from "../model/Task.ts";
 import Footer from "../components/Footer.tsx";
+import "../App.scss"
 
 const STORAGE_KEY = "todos-react";
 
@@ -38,7 +39,7 @@ const Home: React.FC = () => {
   }, [location]);
 
   const handleSave = (value: Task) => {
-    const newTodo = { ...value, id: todos.length + 1 };
+    const newTodo = { ...value, id: todos[todos.length - 1].id + 1 };
     setTodos((prevTodos) => [newTodo, ...prevTodos]);
     setFilteredTodos((prevTodos) => [newTodo, ...prevTodos]);
   };
@@ -99,9 +100,11 @@ const Home: React.FC = () => {
 
   const hasCompletedTodos = todos.some((todo) => todo.completed);
   return (
-    <>
-      <Header title="Welcome to my ToDo App" onCheckAll={handleCheckAll} />
-      <TodoInput onSave={handleSave} />
+    <div className="home-container">
+      <div className="header-todoinput-container">
+        <Header onCheckAll={handleCheckAll} />
+        <TodoInput onSave={handleSave} />
+      </div>
       {todos.length > 0 && (
         <>
           <TodoList
@@ -119,7 +122,7 @@ const Home: React.FC = () => {
           />
         </>
       )}
-    </>
+    </div>
   );
 };
 

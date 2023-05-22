@@ -1,0 +1,15 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+}
+
+.checkbox-icon {
+    color: gray;
+    transition: color 0.3s;
+}
+
+.checkbox-icon.clicked {
+    color: black;
+}

@@ -1,27 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
+import "../css/header.scss";
+import { BiChevronDown } from "react-icons/bi";
 
 interface HeaderProps {
-  title: string;
   onCheckAll: (checked: boolean) => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ title, onCheckAll }) => {
-  const handleCheckAllChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const checked = event.target.checked;
+const Header: React.FC<HeaderProps> = ({ onCheckAll }) => {
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleClick = () => {
+    const checked = !isClicked;
+    setIsClicked(checked);
     onCheckAll(checked);
   };
 
+
   return (
-    <header>
-      <h1>{title}</h1>
-      <label htmlFor="checkAll">
-        <input
-          id="checkAll"
-          type="checkbox"
-          onChange={handleCheckAllChange}
-        />
-        All as completed
-      </label>
+    <header className="header">
+      <span className={`checkbox-icon ${isClicked ? "clicked" : ""}`} onClick={handleClick}>
+        <BiChevronDown size={50} />
+      </span>
     </header>
   );
 };
