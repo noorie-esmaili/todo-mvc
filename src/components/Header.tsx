@@ -2,19 +2,27 @@ import React from "react";
 
 interface HeaderProps {
   title: string;
-  onCheckAll: () => void;
+  onCheckAll: (checked: boolean) => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ title, onCheckAll }) => {
-  const handleCheckAll = () => {
-    onCheckAll();
+  const handleCheckAllChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const checked = event.target.checked;
+    onCheckAll(checked);
   };
 
   return (
-    <div>
-      <button onClick={handleCheckAll}>All as completed</button>
-      {title && <h1>{title}</h1>}
-    </div>
+    <header>
+      <h1>{title}</h1>
+      <label htmlFor="checkAll">
+        <input
+          id="checkAll"
+          type="checkbox"
+          onChange={handleCheckAllChange}
+        />
+        All as completed
+      </label>
+    </header>
   );
 };
 

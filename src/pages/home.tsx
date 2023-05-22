@@ -18,14 +18,11 @@ const Home: React.FC = () => {
     return tasks.filter((task) => !task.completed).length;
   };
 
-  const handleCheckAll = () => {
-    const areAllCompleted = todos.every((todo) => todo.completed);
-
+  const handleCheckAll = (checked: boolean) => {
     const updatedTodos = todos.map((todo) => ({
       ...todo,
-      completed: !areAllCompleted,
+      completed: checked,
     }));
-
     setTodos(updatedTodos);
     setFilteredTodos(updatedTodos);
   };
