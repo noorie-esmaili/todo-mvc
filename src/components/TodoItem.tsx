@@ -84,7 +84,6 @@ const TodoItem: React.FC<TodoItemProps> = ({
           onKeyDown={handleKeyDown}
           autoFocus
           ref={inputRef}
-          required
         />
       ) : (
         <div
