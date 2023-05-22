@@ -68,6 +68,7 @@ const Home: React.FC = () => {
     setFilteredTodos(updatedTodos);
   };
 
+  const hasCompletedTodos = todos.some((todo) => todo.completed);
   return (
     <>
       <Header title="Welcome to my ToDo App" onCheckAll={handleCheckAll} />
@@ -85,6 +86,7 @@ const Home: React.FC = () => {
             onFilterAll={handleFilterAll}
             onFilterCompleted={handleFilterCompleted}
             onClearCompleted={handleClearCompleted}
+            hasCompletedTodos={hasCompletedTodos}
           />
         </>
       )}

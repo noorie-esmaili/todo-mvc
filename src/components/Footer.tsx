@@ -6,6 +6,7 @@ interface FooterProps {
   onFilterAll: () => void;
   onFilterCompleted: () => void;
   onClearCompleted: () => void;
+  hasCompletedTodos: boolean;
 }
 
 const Footer: React.FC<FooterProps> = ({
@@ -14,9 +15,14 @@ const Footer: React.FC<FooterProps> = ({
   onFilterAll,
   onFilterCompleted,
   onClearCompleted,
+  hasCompletedTodos,
 }) => {
   const itemWord = numOfLeftItems === 1 ? "item" : "items";
   const itemText = `${numOfLeftItems} ${itemWord} left`;
+
+  const handleClearCompletedClick = () => {
+    onClearCompleted();
+  };
 
   return (
     <footer>
@@ -32,7 +38,9 @@ const Footer: React.FC<FooterProps> = ({
           <button onClick={onFilterCompleted}>Completed</button>
         </li>
       </ul>
-      <button onClick={onClearCompleted}>Clear Completed</button>
+      {hasCompletedTodos && (
+        <button onClick={handleClearCompletedClick}>Clear Completed</button>
+      )}
     </footer>
   );
 };
